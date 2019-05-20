@@ -5,78 +5,99 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Diccionario_"
         mc:Ignorable="d"
-        Title="Diccionario" Height="715.079" Width="1091.927"  ResizeMode="NoResize" >
+        Title="Diccionario" Height="739.079" Width="1096.927"  ResizeMode="CanResize" MinHeight="740" MinWidth="800" SizeChanged="Window_SizeChanged">
 
 
 
-    <Grid Grid.Row="2" Height="684" Margin="0,0,1,0" VerticalAlignment="Top">
+    <Grid Name="rootGrid" Height="Auto"  VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="7*"/>
-            <ColumnDefinition Width="536*"/>
+            <ColumnDefinition Width="*" MinWidth="200"/>
+            <ColumnDefinition Width="5"/>
+            <ColumnDefinition Width="4*" />
         </Grid.ColumnDefinitions>
-        <Menu Height="20" VerticalAlignment="Top" Margin="0,0,-12.254,0" Grid.ColumnSpan="2" FontSize="15">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+
+            <RowDefinition Height="675*"/>
+        </Grid.RowDefinitions>
+        <Menu Name="rootMenu" Height="20" VerticalAlignment="Top" Grid.ColumnSpan="3" FontSize="15" Grid.Row="0">
             <MenuItem Header="Archivo">
-                <MenuItem Header="Nueva Palabra" Click="onClickNewWord"/>
+                <MenuItem Name="mnp" Header="Nueva Palabra" Click="onClickNewWord" />
+                <MenuItem Name="mdp" Header="Descargar Palabras" Click="MenuItem_Click"/>
+                <MenuItem Name="mcfg" Header="Configuración" Click="SettingItem_Click"/>
             </MenuItem>
             <MenuItem Header="Ayuda">
-                <MenuItem Header="Acerca de..." Click="onClickAbout"/>
+                <MenuItem Name="mabt" Header="Acerca de..." Click="onClickAbout"/>
             </MenuItem>
         </Menu>
         <!--Abajo es el Panel Izquierdo-->
-        <StackPanel HorizontalAlignment="Left" Height="654" Margin="0,20,0,0" VerticalAlignment="Top" Width="1085" Orientation="Horizontal" Grid.ColumnSpan="2">
+        <!--StackPanel HorizontalAlignment="Left" Height="654" Margin="0,20,0,0" VerticalAlignment="Top" Width="1085" Orientation="Horizontal" Grid.ColumnSpan="2"-->
 
-            <Grid Width="200" Grid.Column="2" Grid.Row="2" Margin="0,0,0,-226.418">
+        <Grid x:Name="leftGrid"   HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Grid.Row="1"  Grid.Column="0" Margin="0,0,0,0" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="17*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
 
-                <StackPanel HorizontalAlignment="Left" Height="37" VerticalAlignment="Top" Width="200" Orientation="Horizontal">
-                    <TextBox x:Name="tboxsearch" Height="23" TextWrapping="NoWrap" AcceptsReturn="False" AcceptsTab="False" Width="195" Margin="4,4,4,0" TextChanged="Tboxsearch_TextChanged"/>
+            <TextBox x:Name="tboxsearch" Margin="2,5,2,5" MaxHeight="30" TextWrapping="NoWrap" AcceptsReturn="False" AcceptsTab="False"  Grid.Row="0" Grid.Column="0" TextChanged="Tboxsearch_TextChanged" FontSize="16" MaxLength="1"/>
 
-                </StackPanel>
+            <ListBox x:Name="lstbox_Words"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"   SelectionMode="Single" SelectionChanged="Lstbox_Words_SelectionChanged" ItemsSource="{Binding}" FontSize="15" Grid.Row="1" Grid.Column="0" />
 
-                <ListBox x:Name="lstbox_Words"  HorizontalAlignment="Left" Height="628" Margin="0,37,0,0" VerticalAlignment="Top" Width="200" SelectionMode="Single" SelectionChanged="Lstbox_Words_SelectionChanged" ItemsSource="{Binding}" FontSize="15">
-                    <!--ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <TextBlock FontSize="12">
-                                <TextBlock.Text >
-                                    <MultiBinding StringFormat="{}{0}">
-                                        <Binding Path="wordName"></Binding>
-                                    </MultiBinding>
-                                </TextBlock.Text>
-                            </TextBlock>
-                            
-                        </DataTemplate>
-                    </-->
-                </ListBox>
+        </Grid>
+        <!--Abajo es lo que se visualiza del panel derecho-->
+        <GridSplitter   Grid.Column="1" Grid.Row="1"  HorizontalAlignment="Stretch" Width="5"/>
 
-            </Grid>
-            <!--Abajo es lo que se visualiza del panel derecho-->
-            <Grid x:Name="word_container" Margin="0,0,0,-14" Width="883">
+        <Grid  VerticalAlignment="Stretch"  Grid.Column="2" x:Name="word_container" Grid.Row="1">
 
-                <Label x:Name="word_name"  Content="Word" HorizontalAlignment="Left" Height="112" Margin="23,10,0,546" VerticalAlignment="Center" Width="841" FontSize="75" FontStyle="Italic" FontWeight="Bold"/>
-
-                <Label x:Name="lbel_other" Content="" HorizontalAlignment="Left" Height="41" Margin="69,112,0,0" VerticalAlignment="Top" Width="105" FontSize="16" FontStyle="Italic" FontWeight="Bold"/>
-
-
-                <TextBox Name="tboxDef" HorizontalAlignment="Left" Height="231" Margin="69,158,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="773" IsEnabled="False" FontSize="16" FontWeight="Bold"/>
-
-                <Label Content="Sinónimos:" HorizontalAlignment="Left" Margin="69,413,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.7,-0.057" FontSize="16"/>
-
-                <TextBox Name="tboxSin" HorizontalAlignment="Left" Height="30" Margin="81,449,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="761" IsEnabled="False" FontSize="16" FontWeight="Bold"/>
-
-                <Label Content="Antónimos:" HorizontalAlignment="Left" Margin="69,484,0,0" VerticalAlignment="Top" FontSize="16"/>
-
-                <TextBox Name="tboxAnt" HorizontalAlignment="Left" Height="30" Margin="81,520,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="761" IsEnabled="False" FontSize="16" FontWeight="Bold"/>
-
-                <TextBox Name="tboxSent" HorizontalAlignment="Left" Height="61" Margin="81,591,0,0" TextWrapping="NoWrap"  VerticalAlignment="Top" Width="761" IsEnabled="False" FontSize="16" FontWeight="Bold" FontStyle="Italic"/>
-
-                <Label Content="Oración:" HorizontalAlignment="Left" Margin="69,555,0,0" VerticalAlignment="Top" FontSize="16" />
-            </Grid>
-            <!--Separator-->
-
-            <!--Separator Width="auto" Height="Stretch"/-->
-            <!--Border Style="{StaticResource SeparatorStyle}" Height="Stre"/-->
+            <Grid.RowDefinitions>
+                <RowDefinition Height="18*"/>
+                <RowDefinition Height="5*"/>
+                <RowDefinition Height="40*"/>
+                <RowDefinition Height="5*"/>
+                <RowDefinition Height="5*"/>
+                <RowDefinition Height="5*"/>
+                <RowDefinition Height="5*"/>
+                <RowDefinition Height="4*"/>
+                <RowDefinition Height="15*"/>
+            </Grid.RowDefinitions>
 
 
-        </StackPanel>
+            <Label x:Name="word_name" HorizontalAlignment="Stretch" VerticalAlignment="Center" Content="Word" Grid.Row="0" FontSize="75" FontStyle="Italic" FontWeight="Bold" Foreground="Black"/>
+
+            <Label x:Name="lbel_other" VerticalAlignment="Top" Content="Adjtdfg" Grid.Row="1" Margin="27,0,0,0" FontSize="16" FontStyle="Italic" FontWeight="Bold"/>
+
+
+            <TextBox Name="tboxDef"  TextWrapping="Wrap"  MinHeight="268" VerticalAlignment="Top" Text="" Margin="10,0,10,0" Grid.Row="2"  IsReadOnly="True" FontSize="16" FontWeight="Bold" Foreground="Black"/>
+
+
+            <Label Name="lbelSin" Content="Sinónimos:" VerticalAlignment="Bottom" Margin="5,0,0,0"  Grid.Row="3" FontSize="16"/>
+
+
+            <TextBox Name="tboxSin" Grid.Row="4" Margin="10,0,10,0" VerticalAlignment="Top" MinHeight="32" MaxHeight="32" TextWrapping="NoWrap"  IsReadOnly="True" FontSize="16" FontWeight="Bold"/>
+
+
+            <Label Name="lbelAnt" Content="Antónimos:" VerticalAlignment="Bottom" Grid.Row="5" FontSize="16"/>
+
+            <TextBox Name="tboxAnt" Grid.Row="6" VerticalAlignment="Top"  MinHeight="32" MaxHeight="32" Margin="10,0,10,0" TextWrapping="NoWrap" IsReadOnly="True" FontSize="16" FontWeight="Bold"/>
+
+
+            <TextBox Name="tboxSent" Grid.Row="8" Margin="10,0,10,10" MinHeight="50" VerticalAlignment="Top" TextWrapping="NoWrap"   IsReadOnly="True" FontSize="16" FontWeight="Bold" FontStyle="Italic"/>
+
+            
+            <Label Name="lbelSent" Content="Oración:" VerticalAlignment="Bottom" Margin="5,0,0,0" Grid.Row="7" FontSize="16" />
+        </Grid>
+
+        <!--Separator-->
+
+        <!--Separator Width="auto" Height="Stretch"/-->
+        <!--Border Style="{StaticResource SeparatorStyle}" Height="Stre"/-->
+
+
+        <!--/-->
 
 
     </Grid>

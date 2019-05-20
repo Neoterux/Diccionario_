@@ -21,6 +21,8 @@ using System.Configuration;
 using System.Data;
 using System.Data.OleDb;
 
+using System.IO;
+
 namespace Diccionario_
 {
     /// <summary>
@@ -35,12 +37,56 @@ namespace Diccionario_
         {
             InitializeComponent();
             connectDb();
-                
+            lstbox_Words.FontSize = Properties.Settings.Default.ListSize;
+            word_name.FontSize = Properties.Settings.Default.TitleSize;
+            tboxDef.FontSize = Properties.Settings.Default.DefSize;
+            tboxAnt.FontSize = Properties.Settings.Default.SinAntSize;
+            tboxSin.FontSize = Properties.Settings.Default.SinAntSize;
+            tboxSent.FontSize = Properties.Settings.Default.SentSize;
+            loadTheme();
 
         }
 
+
+        private void loadTheme()
+        {
+            try
+            {
+                System.Drawing.Color primary = Properties.Settings.Default.Primary;
+                System.Drawing.Color primaryLight = Properties.Settings.Default.Primary_Light;
+                System.Drawing.Color primaryDark = Properties.Settings.Default.Primary_Dark;
+                System.Drawing.Color textColor = Properties.Settings.Default.Text_color;
+                this.rootGrid.Background = new SolidColorBrush(Color.FromRgb(primaryLight.R, primaryLight.G, primaryLight.B));
+                rootMenu.Background = new SolidColorBrush(Color.FromRgb(primaryDark.R, primaryDark.G, primaryDark.B));
+                rootMenu.Foreground = new SolidColorBrush(Color.FromRgb(textColor.R, textColor.G, textColor.B));
+                mabt.Background = new SolidColorBrush(Color.FromRgb(primaryLight.R, primaryLight.G, primaryLight.B));
+                mcfg.Background = new SolidColorBrush(Color.FromRgb(primaryLight.R, primaryLight.G, primaryLight.B));
+                mnp.Background = new SolidColorBrush(Color.FromRgb(primaryLight.R, primaryLight.G, primaryLight.B));
+                mdp.Background = new SolidColorBrush(Color.FromRgb(primaryLight.R, primaryLight.G, primaryLight.B));
+                
+                tboxsearch.Background = new  SolidColorBrush(Color.FromRgb(primaryLight.R, primaryLight.G, primaryLight.B));
+                tboxsearch.Foreground = new SolidColorBrush(Color.FromRgb(textColor.R, textColor.G, textColor.B));
+                lstbox_Words.Background = new SolidColorBrush(Color.FromRgb(primaryLight.R, primaryLight.G, primaryLight.B));
+                lstbox_Words.Foreground = new SolidColorBrush(Color.FromRgb(textColor.R, textColor.G, textColor.B));
+                lbel_other.Foreground = new SolidColorBrush(Color.FromRgb(textColor.R, textColor.G, textColor.B));
+                word_name.Foreground = new SolidColorBrush(Color.FromRgb(textColor.R, textColor.G, textColor.B));
+                tboxDef.Foreground = new SolidColorBrush(Color.FromRgb(textColor.R, textColor.G, textColor.B));
+                tboxDef.Background = new SolidColorBrush(Color.FromRgb(primaryLight.R, primaryLight.G, primaryLight.B));
+                tboxSin.Foreground = new SolidColorBrush(Color.FromRgb(textColor.R, textColor.G, textColor.B));
+                tboxSin.Background = new SolidColorBrush(Color.FromRgb(primaryLight.R, primaryLight.G, primaryLight.B));
+                tboxAnt.Background = new SolidColorBrush(Color.FromRgb(primaryLight.R, primaryLight.G, primaryLight.B));
+                tboxAnt.Foreground = new SolidColorBrush(Color.FromRgb(textColor.R, textColor.G, textColor.B));
+                tboxSent.Foreground = new SolidColorBrush(Color.FromRgb(textColor.R, textColor.G, textColor.B));
+                tboxSent.Background = new SolidColorBrush(Color.FromRgb(primaryLight.R, primaryLight.G, primaryLight.B));
+
+                lbelSent.Foreground = new SolidColorBrush(Color.FromRgb(textColor.R, textColor.G, textColor.B));
+                lbelSin.Foreground = new  SolidColorBrush(Color.FromRgb(textColor.R, textColor.G, textColor.B));
+                lbelAnt.Foreground = new SolidColorBrush(Color.FromRgb(textColor.R, textColor.G, textColor.B));
+            }
+            catch(Exception e) { }
+        }
             //-------------------<Start Database Connection and data>--------------
-            void connectDb()
+        void connectDb()
             {
             //<Initialize database connection>
             string query = "SELECT * FROM Words ORDER BY Words.WORD;";
@@ -76,6 +122,24 @@ namespace Diccionario_
                 lstbox_Words.ItemsSource = lstWords;
                 lstbox_Words.DisplayMemberPath = "wordName";
                 lstbox_Words.SelectedValuePath = "wordName";
+
+                /*foreach (Word word in lstWords)
+                {
+                    using (StreamWriter file = new StreamWriter(Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\" + "Words"+ "\\" + word.wordName + ".html" ))
+                    {
+                        string final_html = "<div class=\"row\">\n" +
+                            "\t<div class=\"col s6\">\n" +
+                                    "\t\t<h3 id =\"name\" >" + word.wordName + "</h3>\n" +
+                                    "\t\t<span id = \"prop\">" + word.Other + "</span><br/>\n" +
+                                    "\t\t<p><span id=\"sig\">" + word.Definition + "</span></p>\n" +
+                                    "\t\t<p><span id=\"syn\">" + word.Sinonyms + "</span></p>\n" +
+                                    "\t\t<p><span id=\"ant\">" + word.Antonyms + "</span></p>\n" +
+                                    "\t\t<p><span id=\"sent\">" + word.Sentence + "</span></p>\n" +
+                            "\t</div>" +
+                          "</div>";
+                        file.Write(final_html);
+                    }
+                }*/
 
                 if (lstWords.Any())
                 {
@@ -207,5 +271,37 @@ namespace Diccionario_
             
 
         }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            if (lstWords.Any())
+            {
+
+            }
+            else
+            {
+                System.Windows.MessageBox.Show("No se encuentran disponibles palabras para descargar");
+            }
+        }
+
+        private void SettingItem_Click(object sender, RoutedEventArgs e)
+        {
+            Settings set = new Settings();
+            set.ShowDialog();
+        }
+
+        private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            if (rootGrid.ActualHeight > 700)
+            {
+                tboxDef.MinHeight = 350;
+            }
+            else
+            {
+                tboxDef.MinHeight = 268;
+            }
+        }
     }
+
+    
 }

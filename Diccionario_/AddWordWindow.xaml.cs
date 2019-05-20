@@ -27,14 +27,14 @@ namespace Diccionario_
     /// </summary>
     public partial class AddWordWindow : Window
     {
-        
-       
+
+
         public AddWordWindow()
         {
             InitializeComponent();
             ___Cbox_Other_.SelectedIndex = 2;
         }
-        
+
         void onExitClicked(Object sender, RoutedEventArgs e)
         {
             this.Close();
@@ -43,7 +43,10 @@ namespace Diccionario_
         void onAddClicked(Object sender, RoutedEventArgs e)
         {
             //string cn_String = Properties.Settings.Default.Connection_String;
-            string sql = "INSERT INTO Words(WORD, DEFINITION, SINONYM, ANTONYM, OTHER, SENTENCE) VALUES(@word, @def, @syn, @ant, @other, @sent)";
+            string check_word_command = "SELECT COUNT(*) FROM Words WHERE (WORD = @word)";
+
+        
+        string sql = "INSERT INTO Words(WORD, DEFINITION, SINONYM, ANTONYM, OTHER, SENTENCE) VALUES(@word, @def, @syn, @ant, @other, @sent)";
             //using (SqlConnection connection = new SqlConnection(cn_String))
             //using (MySqlConnection msqlConnection = new MySqlConnection(Properties.Settings.Default.Connection_String))
             try
@@ -51,43 +54,58 @@ namespace Diccionario_
                 using (OleDbConnection connection = new OleDbConnection(Properties.Settings.Default.Connection_String))
                 {
 
-
-
+                    //check if word already exist
+                    
+                
 
                     if (!(tbox_Word.Text == "" || tbox_def.Text == "" || tbox_sent.Text == "" ))
                     {
                         connection.Open();
-                        //using (SqlCommand sqlCmd = new SqlCommand(sql, connection))
-                        using (OleDbCommand msqlCmd = new OleDbCommand(sql, connection))
-                        {
-                            //sqlCmd.CommandType = CommandType.StoredProcedure;
-                            msqlCmd.Parameters.AddWithValue("@word", tbox_Word.Text);
-                            msqlCmd.Parameters.AddWithValue("@def", tbox_def.Text);
-                            msqlCmd.Parameters.AddWithValue("@syn", tbox_syn.Text);
-                            msqlCmd.Parameters.AddWithValue("@ant", tbox_ant.Text);
-
-                            if (___Cbox_Other_.Text == "Nada")
-                            {
-                                msqlCmd.Parameters.AddWithValue("@other", " ");
-                            }
-                            else
-                            {
-                                msqlCmd.Parameters.AddWithValue("@other", ___Cbox_Other_.Text);
-                            }
-
-                            msqlCmd.Parameters.AddWithValue("@sent", tbox_sent.Text);
-
-
-                            int i = msqlCmd.ExecuteNonQuery();
-
-                            if (i != 0)
-                            {
-                                System.Windows.MessageBox.Show("Datos Agregados Correctamente");
-
-                            }
-                        }
+                        OleDbCommand check = new OleDbCommand(check_word_command, connection);
+                        check.Parameters.AddWithValue("@word", tbox_Word.Text);
+                        int word_exist = (int)check.ExecuteScalar();
                         connection.Close();
-                        //this.Close();
+                        if (word_exist > 0)
+                        {
+                            System.Windows.MessageBox.Show("Palabra ya existente", "Advertencia", System.Windows.MessageBoxButton.OK, MessageBoxImage.Exclamation);
+
+                        }
+                        else
+                        {
+                            connection.Open();
+                            //using (SqlCommand sqlCmd = new SqlCommand(sql, connection))
+                            using (OleDbCommand msqlCmd = new OleDbCommand(sql, connection))
+                            {
+                                //sqlCmd.CommandType = CommandType.StoredProcedure;
+                                msqlCmd.Parameters.AddWithValue("@word", tbox_Word.Text);
+                                msqlCmd.Parameters.AddWithValue("@def", tbox_def.Text);
+                                msqlCmd.Parameters.AddWithValue("@syn", tbox_syn.Text);
+                                msqlCmd.Parameters.AddWithValue("@ant", tbox_ant.Text);
+
+                                if (___Cbox_Other_.Text == "Nada")
+                                {
+                                    msqlCmd.Parameters.AddWithValue("@other", " ");
+                                }
+                                else
+                                {
+                                    msqlCmd.Parameters.AddWithValue("@other", ___Cbox_Other_.Text);
+                                }
+
+                                msqlCmd.Parameters.AddWithValue("@sent", tbox_sent.Text);
+
+
+                                int i = msqlCmd.ExecuteNonQuery();
+
+                                if (i != 0)
+                                {
+                                    System.Windows.MessageBox.Show("Datos Agregados Correctamente");
+
+                                }
+                            }
+                            connection.Close();
+                            //this.Close();
+                        }
+
                     }
                     else
                     {

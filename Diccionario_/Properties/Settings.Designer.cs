@@ -34,5 +34,113 @@ namespace Diccionario_.Properties {
                 this["Connection_String"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("75")]
+        public byte TitleSize {
+            get {
+                return ((byte)(this["TitleSize"]));
+            }
+            set {
+                this["TitleSize"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("16")]
+        public byte DefSize {
+            get {
+                return ((byte)(this["DefSize"]));
+            }
+            set {
+                this["DefSize"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("16")]
+        public byte SinAntSize {
+            get {
+                return ((byte)(this["SinAntSize"]));
+            }
+            set {
+                this["SinAntSize"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("16")]
+        public byte SentSize {
+            get {
+                return ((byte)(this["SentSize"]));
+            }
+            set {
+                this["SentSize"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("15")]
+        public byte ListSize {
+            get {
+                return ((byte)(this["ListSize"]));
+            }
+            set {
+                this["ListSize"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("239, 239, 239")]
+        public global::System.Drawing.Color Primary_Light {
+            get {
+                return ((global::System.Drawing.Color)(this["Primary_Light"]));
+            }
+            set {
+                this["Primary_Light"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("189, 189, 189")]
+        public global::System.Drawing.Color Primary {
+            get {
+                return ((global::System.Drawing.Color)(this["Primary"]));
+            }
+            set {
+                this["Primary"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("141, 141, 141")]
+        public global::System.Drawing.Color Primary_Dark {
+            get {
+                return ((global::System.Drawing.Color)(this["Primary_Dark"]));
+            }
+            set {
+                this["Primary_Dark"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Black")]
+        public global::System.Drawing.Color Text_color {
+            get {
+                return ((global::System.Drawing.Color)(this["Text_color"]));
+            }
+            set {
+                this["Text_color"] = value;
+            }
+        }
     }
 }
