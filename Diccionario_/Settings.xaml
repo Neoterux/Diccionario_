@@ -6,14 +6,14 @@
         xmlns:local="clr-namespace:Diccionario_"
         mc:Ignorable="d"
         Title="Configuración" Height="450" Width="737.525" WindowStyle="SingleBorderWindow" ResizeMode="CanResizeWithGrip">
-    <Grid Margin="0,0,2,0">
-        <GroupBox Header="Tamaño de letra" FontSize="16" HorizontalAlignment="Left" Height="313" Margin="22,19,0,0" VerticalAlignment="Top" Width="317">
+    <Grid Name="bgGrid" Margin="0,0,2,0">
+        <GroupBox Name="gboxlett" Header="Tamaño de letra" FontSize="16" HorizontalAlignment="Left" Height="313" Margin="22,19,0,0" VerticalAlignment="Top" Width="317">
             <Grid Margin="0,0,-2,4" Height="271" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="307">
-                <Label Content="Tamaño de letra de título:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="16"/>
-                <Label Content="Tamaño de letra concepto:" HorizontalAlignment="Left" Margin="10,61,0,0" VerticalAlignment="Top" FontSize="16"/>
-                <Label Content="Tamaño de letra Sinonimos &#xA;y antonimos:" HorizontalAlignment="Left" Margin="10,106,0,0" VerticalAlignment="Top" RenderTransformOrigin="-4.737,-2.346" FontSize="16"/>
-                <Label Content="Tamaño de letra oración:" HorizontalAlignment="Left" Margin="10,164,0,0" VerticalAlignment="Top" FontSize="16"/>
-                <Label Content="Tamaño de letra de lista" HorizontalAlignment="Left" Margin="10,213,0,0" VerticalAlignment="Top" FontSize="16"/>
+                <Label Name="lbel1" Content="Tamaño de letra de título:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="16"/>
+                <Label Name="lbel2" Content="Tamaño de letra concepto:" HorizontalAlignment="Left" Margin="10,61,0,0" VerticalAlignment="Top" FontSize="16"/>
+                <Label Name="lbel3" Content="Tamaño de letra Sinonimos &#xA;y antonimos:" HorizontalAlignment="Left" Margin="10,106,0,0" VerticalAlignment="Top" RenderTransformOrigin="-4.737,-2.346" FontSize="16"/>
+                <Label Name="lbel4" Content="Tamaño de letra oración:" HorizontalAlignment="Left" Margin="10,164,0,0" VerticalAlignment="Top" FontSize="16"/>
+                <Label  Name="lbel5" Content="Tamaño de letra de lista" HorizontalAlignment="Left" Margin="10,213,0,0" VerticalAlignment="Top" FontSize="16"/>
 
 
                 <TextBox Name="tboxTitle" HorizontalAlignment="Left" Height="24" Margin="212,17,0,0" TextWrapping="Wrap" FontSize="14" MaxLength="3" VerticalAlignment="Top" Width="69" TextChanged="TboxTitle_TextChanged"/>
@@ -31,11 +31,11 @@
                 <TextBox Name="tboxList" HorizontalAlignment="Left" Height="24" Margin="212,220,0,0" TextWrapping="Wrap" FontSize="14" MaxLength="3" VerticalAlignment="Top" Width="69" TextChanged="TboxList_TextChanged"/>
             </Grid>
         </GroupBox>
-        <Button Height="25" Content="Aplicar" FontSize="14" HorizontalAlignment="Left" Margin="629,379,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_1"/>
-        <Button Height="25" Content="Cancelar" FontSize="14" HorizontalAlignment="Left" Margin="520,379,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
+        <Button Name="btnApply" Height ="25" Content="Aplicar" FontSize="15" HorizontalAlignment="Left" Margin="629,379,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_1"/>
+        <Button Name="btnCancel" Height="25" Content="Cancelar" FontSize="15" HorizontalAlignment="Left" Margin="520,379,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
 
 
-        <GroupBox Header="Temas" FontSize="16" HorizontalAlignment="Left" Height="313" Margin="362,19,0,0" VerticalAlignment="Top" Width="342">
+        <GroupBox Name="gboxtheme" Header="Temas" FontSize="16" HorizontalAlignment="Left" Height="313" Margin="362,19,0,0" VerticalAlignment="Top" Width="342">
             <Grid HorizontalAlignment="Left" Height="293" Margin="0,10,-2,-18" VerticalAlignment="Top" Width="332">
                 <ComboBox Name="cboxTheme" HorizontalAlignment="Left" Height="30" Margin="34,27,0,0" VerticalAlignment="Top" Width="236" SelectionChanged="CboxTheme_SelectionChanged" >
                     <ComboBoxItem Content="Tema Claro"/>
@@ -50,10 +50,10 @@
                 <TextBox MaxLength="9" Name="tbox_plight" HorizontalAlignment="Left" Height="30" Margin="193,131,0,0" TextWrapping="NoWrap" Text="#FFFFFF" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.65,0.5" TextChanged="Tbox_plight_TextChanged"/>
                 <TextBox MaxLength="9" Name="tbox_pdark" HorizontalAlignment="Left" Height="30" Margin="193,175,0,0" TextWrapping="NoWrap" Text="#FFFFFF" VerticalAlignment="Top" Width="120" TextChanged="Tbox_pdark_TextChanged"/>
                 <TextBox MaxLength="9" Name="tbox_text" HorizontalAlignment="Left" Height="30" Margin="193,219,0,0" TextWrapping="NoWrap" Text="#FFFFFF" VerticalAlignment="Top" Width="120" TextChanged="Tbox_text_TextChanged"/>
-                <Label Content="PrimaryDark" HorizontalAlignment="Left" Margin="34,175,0,0" VerticalAlignment="Top"/>
-                <Label Content="PrimaryLight" HorizontalAlignment="Left" Margin="34,131,0,0" VerticalAlignment="Top"/>
-                <Label Content="Primary" HorizontalAlignment="Left" Margin="34,87,0,0" VerticalAlignment="Top"/>
-                <Label Content="Texto:" HorizontalAlignment="Left" Margin="34,219,0,0" VerticalAlignment="Top"/>
+                <Label Name="lbel6" Content="PrimaryDark" HorizontalAlignment="Left" Margin="34,175,0,0" VerticalAlignment="Top"/>
+                <Label Name="lbel7" Content="PrimaryLight" HorizontalAlignment="Left" Margin="34,131,0,0" VerticalAlignment="Top"/>
+                <Label Name="lbel8" Content="Primary" HorizontalAlignment="Left" Margin="34,87,0,0" VerticalAlignment="Top"/>
+                <Label Name="lbel9" Content="Texto:" HorizontalAlignment="Left" Margin="34,219,0,0" VerticalAlignment="Top"/>
             </Grid>
         </GroupBox>
     </Grid>

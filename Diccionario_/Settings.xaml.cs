@@ -36,7 +36,7 @@ namespace Diccionario_
             tbox_plight.Text = HexConverter(Properties.Settings.Default.Primary_Light) ;
             tbox_pdark.Text = HexConverter(Properties.Settings.Default.Primary_Dark);
             tbox_text.Text = HexConverter(Properties.Settings.Default.Text_color);
-
+            cfgColor();
             updateRectamgleColor();
             //select index of combobox
             if (tbox_primary.Text == "#BDBDBD" && tbox_plight.Text == "#EFEFEF" && tbox_pdark.Text == "#8D8D8D" && tbox_text.Text == "#000000")
@@ -44,7 +44,7 @@ namespace Diccionario_
                 cboxTheme.SelectedIndex = 0;
                 setEnabled(false);
             }
-            else if (tbox_primary.Text == "#212121" && tbox_plight.Text == "#484848" && tbox_pdark.Text == "#000000" && tbox_text.Text == "#FFFFFF")
+            else if (tbox_primary.Text == "#2E3233" && tbox_plight.Text == "#3B3F42" && tbox_pdark.Text == "#313538" && tbox_text.Text == "#FFFFFF")
             {
                 //dark theme
                 cboxTheme.SelectedIndex = 1;
@@ -58,6 +58,39 @@ namespace Diccionario_
             }
 
 
+        }
+
+        private void cfgColor()
+        {
+            System.Drawing.Color primary = ColorTranslator.FromHtml(tbox_primary.Text);
+            System.Drawing.Color primaryLight = ColorTranslator.FromHtml(tbox_plight.Text);
+            System.Drawing.Color primaryDark = ColorTranslator.FromHtml(tbox_pdark.Text);
+            System.Drawing.Color textColor = ColorTranslator.FromHtml(tbox_text.Text);
+
+            bgGrid.Background = new SolidColorBrush(System.Windows.Media.Color.FromRgb(primaryLight.R, primaryLight.G, primaryLight.B));
+            gboxlett.Foreground = new SolidColorBrush(System.Windows.Media.Color.FromRgb(textColor.R, textColor.G, textColor.B));
+            gboxtheme.Foreground = new SolidColorBrush(System.Windows.Media.Color.FromRgb(textColor.R, textColor.G, textColor.B));
+            tbox_primary.Foreground = new SolidColorBrush(System.Windows.Media.Color.FromRgb(textColor.R, textColor.G, textColor.B));
+            tbox_primary.Background = new SolidColorBrush(System.Windows.Media.Color.FromRgb(primaryLight.R, primaryLight.G, primaryLight.B));
+            tbox_plight.Foreground = new SolidColorBrush(System.Windows.Media.Color.FromRgb(textColor.R, textColor.G, textColor.B));
+            tbox_plight.Background = new SolidColorBrush(System.Windows.Media.Color.FromRgb(primaryLight.R, primaryLight.G, primaryLight.B));
+            tbox_pdark.Foreground = new SolidColorBrush(System.Windows.Media.Color.FromRgb(textColor.R, textColor.G, textColor.B));
+            tbox_pdark.Background = new SolidColorBrush(System.Windows.Media.Color.FromRgb(primaryLight.R, primaryLight.G, primaryLight.B));
+            tbox_text.Foreground = new SolidColorBrush(System.Windows.Media.Color.FromRgb(textColor.R, textColor.G, textColor.B));
+            tbox_text.Background = new SolidColorBrush(System.Windows.Media.Color.FromRgb(primaryLight.R, primaryLight.G, primaryLight.B));
+            lbel1.Foreground = new SolidColorBrush(System.Windows.Media.Color.FromRgb(textColor.R, textColor.G, textColor.B));
+            lbel2.Foreground = new SolidColorBrush(System.Windows.Media.Color.FromRgb(textColor.R, textColor.G, textColor.B));
+            lbel3.Foreground = new SolidColorBrush(System.Windows.Media.Color.FromRgb(textColor.R, textColor.G, textColor.B));
+            lbel4.Foreground = new SolidColorBrush(System.Windows.Media.Color.FromRgb(textColor.R, textColor.G, textColor.B));
+            lbel5.Foreground = new SolidColorBrush(System.Windows.Media.Color.FromRgb(textColor.R, textColor.G, textColor.B));
+            lbel6.Foreground = new SolidColorBrush(System.Windows.Media.Color.FromRgb(textColor.R, textColor.G, textColor.B));
+            lbel7.Foreground = new SolidColorBrush(System.Windows.Media.Color.FromRgb(textColor.R, textColor.G, textColor.B));
+            lbel8.Foreground = new SolidColorBrush(System.Windows.Media.Color.FromRgb(textColor.R, textColor.G, textColor.B));
+            lbel9.Foreground = new SolidColorBrush(System.Windows.Media.Color.FromRgb(textColor.R, textColor.G, textColor.B));
+            btnApply.Foreground = new SolidColorBrush(System.Windows.Media.Color.FromRgb(textColor.R, textColor.G, textColor.B));
+            btnCancel.Foreground = new SolidColorBrush(System.Windows.Media.Color.FromRgb(textColor.R, textColor.G, textColor.B));
+            btnApply.Background = new SolidColorBrush(System.Windows.Media.Color.FromRgb(primaryDark.R, primaryDark.G, primaryDark.B));
+            btnCancel.Background = new SolidColorBrush(System.Windows.Media.Color.FromRgb(primaryDark.R, primaryDark.G, primaryDark.B));
         }
 
         void updateRectamgleColor()
@@ -197,9 +230,9 @@ namespace Diccionario_
                     updateRectamgleColor();
                     break;
                 case 1://dark
-                    tbox_primary.Text = "#212121";
-                    tbox_plight.Text = "#484848";
-                    tbox_pdark.Text = "#000000";
+                    tbox_primary.Text = "#2E3233";
+                    tbox_plight.Text = "#3B3F42";
+                    tbox_pdark.Text = "#313538";
                     tbox_text.Text = "#FFFFFF";
                     setEnabled(false);
                     updateRectamgleColor();
@@ -213,6 +246,9 @@ namespace Diccionario_
         private void Tbox_primary_TextChanged(object sender, TextChangedEventArgs e)
         {
             updateRectamgleColor();
+            tbox_primary.Text = tbox_primary.Text.ToUpper();
+
+
         }
 
         private void Tbox_plight_TextChanged(object sender, TextChangedEventArgs e)
