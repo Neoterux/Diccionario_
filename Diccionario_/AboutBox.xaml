@@ -6,11 +6,11 @@
         xmlns:local="clr-namespace:Diccionario_"
         mc:Ignorable="d"
         Title="Acerca de" Height="329.51" Width="563.429" ResizeMode="NoResize" WindowStyle="SingleBorderWindow" >
-    <Grid HorizontalAlignment="Left" Height="302" VerticalAlignment="Top" Width="553" Margin="0,0,0,-0.036">
-        <Label Content="Agradecimientos especiales:" HorizontalAlignment="Left" Margin="17,10,0,0" VerticalAlignment="Top" FontSize="14"/>
+    <Grid Name="gridBg" HorizontalAlignment="Left" Height="302" VerticalAlignment="Top" Width="553" Margin="0,0,0,-0.036">
+        <Label Name="lbel1" Content="Agradecimientos especiales:" HorizontalAlignment="Left" Margin="17,10,0,0" VerticalAlignment="Top" FontSize="14"/>
         <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="162" Margin="70,35,0,0" Stroke="Black" VerticalAlignment="Top" Width="411"/>
-        <TextBlock HorizontalAlignment="Left" Height="162" Margin="70,35,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="411" FontSize="15"><Run Text="Josué Daniel Briones Rosas"/><LineBreak/><Run Text="Carlos Xavier Bermeo Rodriguez"/><LineBreak/><Run Text="Emilio Ignacio Sáenz Gómez "/><LineBreak/><Run Text="Joel Alejandro Delgado Veloz"/><LineBreak/><Run Text="Luis Andrés Bajaña Fernández"/></TextBlock>
-        <Button Content="Salir" HorizontalAlignment="Left" Height="25" Margin="453,262,0,0" VerticalAlignment="Top" Width="76" Click="Button_Click" FontSize="14"/>
-        <Label Content="Copyright ©Luis Bajaña" HorizontalAlignment="Left" Height="30" Margin="10,262,0,0" VerticalAlignment="Top" Width="180" FontSize="13"/>
+        <TextBlock Name="tblockNames" HorizontalAlignment="Left" Height="162" Margin="70,35,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="411" FontSize="15"><Run Text="Josué Daniel Briones Rosas"/><LineBreak/><Run Text="Carlos Xavier Bermeo Rodriguez"/><LineBreak/><Run Text="Emilio Ignacio Sáenz Gómez "/><LineBreak/><Run Text="Joel Alejandro Delgado Veloz"/><LineBreak/><Run Text="Luis Andrés Bajaña Fernández"/></TextBlock>
+        <Button Name="btnExit" Content="Salir" HorizontalAlignment="Left" Height="25" Margin="453,262,0,0" VerticalAlignment="Top" Width="76" Click="Button_Click" FontSize="14"/>
+        <Label Name="lbel2" Content="Copyright ©Luis Bajaña" HorizontalAlignment="Left" Height="30" Margin="10,262,0,0" VerticalAlignment="Top" Width="180" FontSize="13"/>
     </Grid>
 </Window>

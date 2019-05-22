@@ -22,8 +22,29 @@ namespace Diccionario_
         public Window1()
         {
             InitializeComponent();
+            configColor();
         }
 
+
+        private void configColor()
+        {
+            try
+            {
+                
+                Colors settingsColors = new Colors();
+
+                lbel1.Foreground = settingsColors.textColorBrush();
+                lbel2.Foreground = settingsColors.textColorBrush();
+
+                btnExit.Foreground = settingsColors.textColorBrush();
+                gridBg.Background = settingsColors.primaryLightColorBrush();
+                tblockNames.Foreground = settingsColors.textColorBrush();
+                tblockNames.Background = settingsColors.PrimaryColorBrush();
+                btnExit.Background = settingsColors.PrimaryColorBrush();
+            }
+            catch (Exception e) { Console.WriteLine("Impossible to apply colors");  }
+
+        }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             

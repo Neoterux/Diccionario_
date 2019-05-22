@@ -52,38 +52,37 @@ namespace Diccionario_
         {
             try
             {
-                System.Drawing.Color primary = Properties.Settings.Default.Primary;
-                System.Drawing.Color primaryLight = Properties.Settings.Default.Primary_Light;
-                System.Drawing.Color primaryDark = Properties.Settings.Default.Primary_Dark;
-                System.Drawing.Color textColor = Properties.Settings.Default.Text_color;
-                this.rootGrid.Background = new SolidColorBrush(Color.FromRgb(primaryLight.R, primaryLight.G, primaryLight.B));
-                rootMenu.Background = new SolidColorBrush(Color.FromRgb(primaryDark.R, primaryDark.G, primaryDark.B));
-                rootMenu.Foreground = new SolidColorBrush(Color.FromRgb(textColor.R, textColor.G, textColor.B));
-                mabt.Background = new SolidColorBrush(Color.FromRgb(primaryLight.R, primaryLight.G, primaryLight.B));
-                mcfg.Background = new SolidColorBrush(Color.FromRgb(primaryLight.R, primaryLight.G, primaryLight.B));
-                mnp.Background = new SolidColorBrush(Color.FromRgb(primaryLight.R, primaryLight.G, primaryLight.B));
-                mdp.Background = new SolidColorBrush(Color.FromRgb(primaryLight.R, primaryLight.G, primaryLight.B));
+                Colors settingsColors = new Colors();
+              
+                this.rootGrid.Background = settingsColors.primaryLightColorBrush();
+                rootMenu.Background = settingsColors.PrimaryColorBrush();
+                rootMenu.Foreground = settingsColors.textColorBrush();
                 
-                tboxsearch.Background = new  SolidColorBrush(Color.FromRgb(primaryLight.R, primaryLight.G, primaryLight.B));
-                tboxsearch.Foreground = new SolidColorBrush(Color.FromRgb(textColor.R, textColor.G, textColor.B));
-                lstbox_Words.Background = new SolidColorBrush(Color.FromRgb(primaryLight.R, primaryLight.G, primaryLight.B));
-                lstbox_Words.Foreground = new SolidColorBrush(Color.FromRgb(textColor.R, textColor.G, textColor.B));
-                lbel_other.Foreground = new SolidColorBrush(Color.FromRgb(textColor.R, textColor.G, textColor.B));
-                word_name.Foreground = new SolidColorBrush(Color.FromRgb(textColor.R, textColor.G, textColor.B));
-                tboxDef.Foreground = new SolidColorBrush(Color.FromRgb(textColor.R, textColor.G, textColor.B));
-                tboxDef.Background = new SolidColorBrush(Color.FromRgb(primaryLight.R, primaryLight.G, primaryLight.B));
-                tboxSin.Foreground = new SolidColorBrush(Color.FromRgb(textColor.R, textColor.G, textColor.B));
-                tboxSin.Background = new SolidColorBrush(Color.FromRgb(primaryLight.R, primaryLight.G, primaryLight.B));
-                tboxAnt.Background = new SolidColorBrush(Color.FromRgb(primaryLight.R, primaryLight.G, primaryLight.B));
-                tboxAnt.Foreground = new SolidColorBrush(Color.FromRgb(textColor.R, textColor.G, textColor.B));
-                tboxSent.Foreground = new SolidColorBrush(Color.FromRgb(textColor.R, textColor.G, textColor.B));
-                tboxSent.Background = new SolidColorBrush(Color.FromRgb(primaryLight.R, primaryLight.G, primaryLight.B));
+                mabt.Background = settingsColors.PrimaryColorBrush();
+                mcfg.Background = settingsColors.PrimaryColorBrush();
+                mnp.Background = settingsColors.PrimaryColorBrush();
+                mdp.Background = settingsColors.PrimaryColorBrush();
 
-                lbelSent.Foreground = new SolidColorBrush(Color.FromRgb(textColor.R, textColor.G, textColor.B));
-                lbelSin.Foreground = new  SolidColorBrush(Color.FromRgb(textColor.R, textColor.G, textColor.B));
-                lbelAnt.Foreground = new SolidColorBrush(Color.FromRgb(textColor.R, textColor.G, textColor.B));
+                tboxsearch.Background = settingsColors.primaryLightColorBrush();
+                tboxsearch.Foreground = settingsColors.textColorBrush();
+                lstbox_Words.Background = settingsColors.primaryLightColorBrush();
+                lstbox_Words.Foreground = settingsColors.textColorBrush();
+                lbel_other.Foreground = settingsColors.textColorBrush();
+                word_name.Foreground = settingsColors.textColorBrush();
+                tboxDef.Foreground = settingsColors.textColorBrush();
+                tboxDef.Background = settingsColors.primaryLightColorBrush();
+                tboxSin.Foreground = settingsColors.textColorBrush();
+                tboxSin.Background = settingsColors.primaryLightColorBrush();
+                tboxAnt.Background = settingsColors.primaryLightColorBrush();
+                tboxAnt.Foreground = settingsColors.textColorBrush();
+                tboxSent.Foreground = settingsColors.textColorBrush();
+                tboxSent.Background = settingsColors.primaryLightColorBrush();
+
+                lbelSent.Foreground = settingsColors.textColorBrush();
+                lbelSin.Foreground = settingsColors.textColorBrush();
+                lbelAnt.Foreground = settingsColors.textColorBrush();
             }
-            catch(Exception e) { }
+            catch(Exception e) { Console.WriteLine("The Theme Could not be applied"); }
         }
             //-------------------<Start Database Connection and data>--------------
         void connectDb()
@@ -274,9 +273,10 @@ namespace Diccionario_
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
+            //Deprecated
             if (lstWords.Any())
             {
-
+                //Download
             }
             else
             {
@@ -288,19 +288,10 @@ namespace Diccionario_
         {
             Settings set = new Settings();
             set.ShowDialog();
+            loadTheme();
         }
 
-        private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
-        {
-            if (rootGrid.ActualHeight > 700)
-            {
-                tboxDef.MinHeight = 350;
-            }
-            else
-            {
-                tboxDef.MinHeight = 268;
-            }
-        }
+        
     }
 
     
